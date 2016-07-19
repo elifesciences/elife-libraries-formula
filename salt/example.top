@@ -2,5 +2,5 @@ base:
     '*':
         - elife
         - elife.php7
-        - elife.jenkins-scripts
         - elife-libraries
+        - elife.jenkins-scripts
