@@ -4,3 +4,4 @@ base:
         - elife.php7
         - elife-libraries
         - elife.jenkins-scripts
+        - elife.proofreader-php
