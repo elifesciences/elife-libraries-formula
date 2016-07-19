@@ -65,6 +65,18 @@ jenkins-user-and-group:
         - require:
             - group: jenkins-user-and-group
 
+# to get all environment variables like PATH
+# when executing commands over SSH (which is what Jenkins does
+# to start the slave)
+jenkins-bashrc-sourcing-profile:
+    file.prepend:
+        - name: /var/lib/jenkins/.bashrc
+        - text:
+            - "# to load PATH and env variables in all ssh commands"
+            - source /etc/profile
+        - require:
+            - user: jenkins-user-and-group
+
 jenkins-slave-node-folder:
     file.directory:
         - name: /var/lib/jenkins-libraries-runner
