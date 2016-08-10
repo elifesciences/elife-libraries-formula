@@ -2,6 +2,7 @@ base:
     '*':
         - elife
         - elife.php7
+        - elife.node6
         - elife-libraries
         - elife.jenkins-scripts
         - elife.proofreader-php
