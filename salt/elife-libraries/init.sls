@@ -108,3 +108,8 @@ jenkins-workspaces-cleanup-cron:
         - identifier: clean-workspaces
         - hour: 5
         - minute: 0
+
+coveralls:
+    file.managed:
+        - name: /etc/profile.d/coveralls.sh
+        - contents: export COVERALLS_REPO_TOKEN={{ elife_libraries.coveralls.github_token }}

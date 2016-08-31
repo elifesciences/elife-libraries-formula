@@ -1,2 +1,3 @@
 elife_libraries:
-    no: data
+    coveralls:
+        github_token: null
