@@ -113,7 +113,7 @@ coveralls-wrong-file:
     file.absent:
         - name: /etc/profile.d/coveralls.sh
 
-{% for project, token in pillar.elife_libraries.coveralls.tokens %}
+{% for project, token in pillar.elife_libraries.coveralls.tokens.items() %}
 coveralls:
     file.managed:
         - name: /etc/coveralls/tokens/{{ project|replace("_", "-") }}
