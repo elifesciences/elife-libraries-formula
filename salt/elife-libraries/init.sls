@@ -118,5 +118,6 @@ coveralls:
     file.managed:
         - name: /etc/coveralls/tokens/{{ project|replace("_", "-") }}
         - contents: {{ pillar.elife_libraries.coveralls.tokens.elife_poa_xml_generation }}
+        - makedirs: True
         - mode: 644
 {% endfor %}
