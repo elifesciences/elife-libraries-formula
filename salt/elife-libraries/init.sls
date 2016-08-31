@@ -39,7 +39,7 @@ patterns-php-puli-latest:
 
 elife-poa-xml-generation-dependencies:
     pkg.installed:
-        -pkgs:
+        pkgs:
             - libxml2-dev
             - libxslt1-dev
 
