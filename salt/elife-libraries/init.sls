@@ -9,7 +9,7 @@ make:
 
 ruby-dev:
     pkg.installed
-        
+
 pattern-library-compass:
     gem.installed:
         - name: compass
@@ -36,6 +36,12 @@ patterns-php-puli-latest:
         - cwd: /usr/local/bin/
         - unless:
             - which puli
+
+elife-poa-xml-generation-dependencies:
+    pkg.installed:
+        -pkgs:
+            - libxml2-dev
+            - libxslt1-dev
 
 # for Alfred's Jenkins master to log in and run a slave
 jenkins-user-and-group:
