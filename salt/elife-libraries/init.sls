@@ -109,7 +109,14 @@ jenkins-workspaces-cleanup-cron:
         - hour: 5
         - minute: 0
 
+coveralls-wrong-file:
+    file.absent:
+        - name: /etc/profile.d/coveralls.sh
+
+{% for project, token in pillar.elife_libraries.coveralls.tokens %}
 coveralls:
     file.managed:
-        - name: /etc/profile.d/coveralls.sh
-        - contents: export COVERALLS_REPO_TOKEN={{ pillar.elife_libraries.coveralls.github_token }}
+        - name: /etc/coveralls/tokens/{{ project|replace("_", "-") }}
+        - contents: {{ pillar.elife_libraries.coveralls.tokens.elife_poa_xml_generation }}
+        - mode: 644
+{% endfor %}

@@ -1,3 +1,4 @@
 elife_libraries:
     coveralls:
-        github_token: null
+        tokens:
+            elife_poa_xml_generation: null
