@@ -121,3 +121,9 @@ coveralls:
         - makedirs: True
         - mode: 644
 {% endfor %}
+
+add-jenkins-gitconfig:
+    file.managed:
+        - name: /var/lib/jenkins/.gitconfig
+        - source: salt://elife-libraries/config/var-lib-jenkins-.gitconfig
+        - mode: 664
