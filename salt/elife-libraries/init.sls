@@ -70,14 +70,6 @@ jenkins-slave-node-folder:
         - require:
             - deploy-user
 
-alfred-jenkins-user-public-key:
-    ssh_auth.present:
-        - name: jenkins@alfred
-        - user: {{ pillar.elife.deploy_user.username }}
-        - source: salt://elife-alfred/config/var-lib-jenkins-.ssh-id_rsa.pub
-        - require:
-            - deploy-user
-
 # to check out projects on the slave
 add-alfred-key-to-jenkins-home:
     file.managed:
