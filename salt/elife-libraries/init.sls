@@ -54,6 +54,7 @@ jenkins-bashrc-sourcing-profile:
         - text:
             - "# to load PATH and env variables in all ssh commands"
             - source /etc/profile
+        - require:
             - deploy-user
 
 jenkins-slave-node-folder:
