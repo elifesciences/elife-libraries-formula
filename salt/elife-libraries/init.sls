@@ -72,14 +72,14 @@ jenkins-slave-node-folder:
             - deploy-user
 
 # to check out projects on the slave
-add-alfred-key-to-jenkins-home:
+add-alfred-key-to-deploy-user:
     file.managed:
         - user: {{ pillar.elife.deploy_user.username }}
         - name: /home/{{ pillar.elife.deploy_user.username }}/.ssh/id_rsa
         - source: salt://elife-alfred/config/var-lib-jenkins-.ssh-id_rsa
         - mode: 400
         - require:
-            - ssh_auth: alfred-jenkins-user-public-key
+            - deploy-user
 
 # Jenkins slave does not clean up workspaces after builds are run.
 # Cleaning them manually while no build should be running is
