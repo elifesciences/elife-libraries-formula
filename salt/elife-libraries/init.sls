@@ -97,7 +97,7 @@ jenkins-workspaces-cleanup-cron:
 coveralls-{{ project|replace("_", "-") }}:
     file.managed:
         - name: /etc/coveralls/tokens/{{ project|replace("_", "-") }}
-        - contents: {{ pillar.elife_libraries.coveralls.tokens.elife_poa_xml_generation }}
+        - contents: {{ pillar.elife_libraries.coveralls.tokens.get(project) }}
         - makedirs: True
         - mode: 644
 {% endfor %}
