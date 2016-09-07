@@ -3,6 +3,7 @@ base:
         - elife
         - elife.php7
         - elife.nodejs6
+        - elife.mercurial
         - elife-libraries
         - elife.jenkins-scripts
         - elife.proofreader-php
