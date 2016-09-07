@@ -59,7 +59,7 @@ elife-ga-metrics-auth:
     file.managed:
         - user: {{ pillar.elife.deploy_user.username }}
         - name: /etc/elife-ga-metrics/client-secrets.json
-        - source: salt://elife-libraries/config/etc-elife-ga-metric-client-secrets.json
+        - source: salt://elife-libraries/config/etc-elife-ga-metrics-client-secrets.json
         - makedirs: True
 
 # for Alfred's Jenkins master to log in and run a slave: it will use the elife user
