@@ -82,11 +82,6 @@ jenkins-slave-node-folder:
         - user: {{ pillar.elife.deploy_user.username }}
         - group: {{ pillar.elife.deploy_user.username }}
         - dir_mode: 755
-        - file_mode: 644
-        - recurse:
-            - user
-            - group
-            - mode
         - require:
             - deploy-user
 
