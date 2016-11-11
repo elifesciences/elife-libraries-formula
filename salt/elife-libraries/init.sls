@@ -129,4 +129,3 @@ remove-old-pdepend-caches:
         - identifier: remove-old-pdepend-caches
         - name: find /home/{{ pillar.elife.deploy_user.username }}/.pdepend -amin +1440 -exec rm {} \;
         - minute: random
-        - hour: *
