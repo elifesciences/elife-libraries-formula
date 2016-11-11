@@ -121,3 +121,12 @@ add-jenkins-gitconfig:
         - name: /home/{{ pillar.elife.deploy_user.username }}/.gitconfig
         - source: salt://elife-libraries/config/home-deploy-user-.gitconfig
         - mode: 664
+
+# can grow up to 1-2 GB
+remove-old-pdepend-caches:
+    cron.present:
+        - user: {{ pillar.elife.deploy_user.username }}
+        - identifier: remove-old-pdepend-caches
+        - name: find /home/{{ pillar.elife.deploy_user.username }}/.pdepend -amin +1440 -exec rm {} \;
+        - minute: random
+        - hour: *
