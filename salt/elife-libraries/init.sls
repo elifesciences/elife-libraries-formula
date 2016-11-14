@@ -1,3 +1,31 @@
+mount-point-external-volume:
+    file.directory:
+        - name: /ext
+
+mount-external-volume:
+    mount.mounted:
+        - name: /ext
+        - device: /dev/xvdh
+        - fstype: ext4
+        - mkmnt: True
+        - opts:
+            - defaults
+        - require:
+            - format-external-volume
+            - mount-point-external-volume
+        - onlyif:
+            # disk exists
+            - test -b /dev/xvdh
+        - unless:
+            # mount point already has a volume mounted
+            - cat /proc/mounts | grep --quiet --no-messages /ext/
+
+libraries-runner-directory:
+    file.directory:
+        - name: /ext/libraries-runner
+        - require:
+            - mount-external-volume
+
 pattern-library-gulp:
     npm.installed:
         - name: gulp-cli
@@ -84,6 +112,7 @@ jenkins-slave-node-folder:
         - dir_mode: 755
         - require:
             - deploy-user
+            - libraries-runner-directory
 
 # to check out projects on the slave
 # the paths are referring to /var/lib/jenkins because it's the path on the master
