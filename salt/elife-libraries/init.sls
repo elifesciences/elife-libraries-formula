@@ -86,11 +86,22 @@ jenkins-slave-node-folder:
             - deploy-user
 
 # to check out projects on the slave
-add-alfred-key-to-deploy-user:
+# the paths are referring to /var/lib/jenkins because it's the path on the master
+
+add-alfred-private-key-to-deploy-user:
     file.managed:
         - user: {{ pillar.elife.deploy_user.username }}
         - name: /home/{{ pillar.elife.deploy_user.username }}/.ssh/id_rsa
         - source: salt://elife-alfred/config/var-lib-jenkins-.ssh-id_rsa
+        - mode: 400
+        - require:
+            - deploy-user
+
+add-alfred-public-key-to-deploy-user:
+    file.managed:
+        - user: {{ pillar.elife.deploy_user.username }}
+        - name: /home/{{ pillar.elife.deploy_user.username }}/.ssh/id_rsa.pub
+        - source: salt://elife-alfred/config/var-lib-jenkins-.ssh-id_rsa.pub
         - mode: 400
         - require:
             - deploy-user
