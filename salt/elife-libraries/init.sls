@@ -37,7 +37,7 @@ libraries-runner-directory:
         - group: {{ pillar.elife.deploy_user.username }}
         - dir_mode: 755
         - require:
-            - deploy_user
+            - deploy-user
             - mount-external-volume
 
 pattern-library-gulp:
