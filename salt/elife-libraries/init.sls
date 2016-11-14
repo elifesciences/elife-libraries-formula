@@ -1,3 +1,13 @@
+format-external-volume:
+    cmd.run: 
+        - name: mkfs -t ext4 /dev/xvdh
+        - onlyif:
+            # disk exists
+            - test -b /dev/xvdh
+        - unless:
+            # volume exists and is already formatted
+            - file --special-files /dev/xvdh | grep ext4
+
 mount-point-external-volume:
     file.directory:
         - name: /ext
