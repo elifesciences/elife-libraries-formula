@@ -32,8 +32,12 @@ mount-external-volume:
 
 libraries-runner-directory:
     file.directory:
-        - name: /ext/libraries-runner
+        - name: /ext/jenkins-libraries-runner
+        - user: {{ pillar.elife.deploy_user.username }}
+        - group: {{ pillar.elife.deploy_user.username }}
+        - dir_mode: 755
         - require:
+            - deploy_user
             - mount-external-volume
 
 pattern-library-gulp:
@@ -115,13 +119,12 @@ jenkins-bashrc-sourcing-profile:
             - deploy-user
 
 jenkins-slave-node-folder:
-    file.directory:
+    file.symlink:
         - name: /var/lib/jenkins-libraries-runner
+        - target: /ext/jenkins-libraries-runner
         - user: {{ pillar.elife.deploy_user.username }}
         - group: {{ pillar.elife.deploy_user.username }}
-        - dir_mode: 755
         - require:
-            - deploy-user
             - libraries-runner-directory
 
 # to check out projects on the slave
