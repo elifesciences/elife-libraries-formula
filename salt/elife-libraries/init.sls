@@ -182,3 +182,23 @@ remove-old-pdepend-caches:
         - identifier: remove-old-pdepend-caches
         - name: find /home/{{ pillar.elife.deploy_user.username }}/.pdepend -amin +1440 -exec rm {} \;
         - minute: random
+
+# for faster builds
+cached-repositories:
+    file.directory:
+        - name: /ext/cached-repositories
+        - user: {{ pillar.elife.deploy_user.username }}
+        - group: {{ pillar.elife.deploy_user.username }}
+        - mode: 755
+
+    git.latest:
+        - name: ssh://git@github.com/elifesciences/elife-article-xml.git
+        - identity: {{ pillar.elife.projects_builder.key or '' }}
+        - rev: master
+        - force_fetch: True
+        - force_clone: True
+        - force_reset: True
+        - target: /ext/cached-repositories/elife-article-xml
+        - require:
+            - file: cached-repositories
+
