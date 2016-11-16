@@ -193,7 +193,6 @@ cached-repositories:
 
     git.latest:
         - name: ssh://git@github.com/elifesciences/elife-article-xml.git
-        - identity: {{ pillar.elife.projects_builder.key or '' }}
         - rev: master
         - force_fetch: True
         - force_clone: True
@@ -202,3 +201,11 @@ cached-repositories:
         - require:
             - file: cached-repositories
 
+cached-repositories-link:
+    file.symlink:
+        - name: /home/{{ pillar.elife.deploy_user.username }}/elife-article-xml
+        - target: /ext/cached-repositories/elife-article-xml
+        - user: {{ pillar.elife.deploy_user.username }}
+        - group: {{ pillar.elife.deploy_user.username }}
+        - require:
+            - cached-repositories
