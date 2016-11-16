@@ -193,6 +193,7 @@ cached-repositories:
 
     git.latest:
         - name: ssh://git@github.com/elifesciences/elife-article-xml.git
+        - user: {{ pillar.elife.deploy_user.username }}
         - rev: master
         - force_fetch: True
         - force_clone: True
