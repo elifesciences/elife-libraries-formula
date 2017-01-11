@@ -210,3 +210,13 @@ cached-repositories-link:
         - group: {{ pillar.elife.deploy_user.username }}
         - require:
             - cached-repositories
+
+aws-credentials;
+    file.managed:
+        - name: /home/{{ pillar.elife.deploy_user.username }}/.aws/credentials
+        - source: salt://elife-libraries/config/home-deploy-user-.aws-credentials
+        - template: jinja
+        - user: {{ pillar.elife.deploy_user.username }}
+        - group: {{ pillar.elife.deploy_user.username }}
+        - require:
+            - deploy-user
