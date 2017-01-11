@@ -216,6 +216,7 @@ aws-credentials:
         - name: /home/{{ pillar.elife.deploy_user.username }}/.aws/credentials
         - source: salt://elife-libraries/config/home-deploy-user-.aws-credentials
         - template: jinja
+        - makedirs: True
         - user: {{ pillar.elife.deploy_user.username }}
         - group: {{ pillar.elife.deploy_user.username }}
         - require:
