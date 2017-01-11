@@ -211,7 +211,7 @@ cached-repositories-link:
         - require:
             - cached-repositories
 
-aws-credentials;
+aws-credentials:
     file.managed:
         - name: /home/{{ pillar.elife.deploy_user.username }}/.aws/credentials
         - source: salt://elife-libraries/config/home-deploy-user-.aws-credentials
