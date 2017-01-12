@@ -221,3 +221,12 @@ aws-credentials:
         - group: {{ pillar.elife.deploy_user.username }}
         - require:
             - deploy-user
+
+mysql-user:
+    mysql_user.present:
+        - name: elife-libraries
+        - password: elife-libraries
+        - connection_pass: {{ pillar.elife.db_root.password }}
+        - host: localhost
+        - require:
+            - mysql-ready
