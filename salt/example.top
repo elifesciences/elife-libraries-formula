@@ -7,3 +7,4 @@ base:
         - elife-libraries
         - elife.jenkins-scripts
         - elife.proofreader-php
+        - elife.mysql57
