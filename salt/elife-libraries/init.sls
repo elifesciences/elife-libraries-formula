@@ -230,3 +230,12 @@ mysql-user:
         - host: localhost
         - require:
             - mysql-ready
+
+mysql-user-grants:
+    mysql_grants.present:
+        - user: elife-libraries
+        - database: '*'
+        - grant: all privileges
+        - connection_pass: {{ elife.db_root.password }}
+        - require:
+            - mysql-user
