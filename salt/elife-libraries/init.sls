@@ -236,6 +236,6 @@ mysql-user-grants:
         - user: elife-libraries
         - database: '*'
         - grant: all privileges
-        - connection_pass: {{ elife.db_root.password }}
+        - connection_pass: {{ pillar.elife.db_root.password }}
         - require:
             - mysql-user
