@@ -180,7 +180,8 @@ hub:
         - name: |
             wget -c https://github.com/github/hub/releases/download/v2.3.0-pre8/hub-linux-amd64-2.3.0-pre8.tgz
             tar zvxf hub-linux-amd64-2.3.0-pre8.tgz
-            ln -sf ~/dotfiles/hub-linux-amd64-2.3.0-pre8/bin/hub /usr/local/bin/hub
+            ln -sf /opt/hub-linux-amd64-2.3.0-pre8/bin/hub /usr/local/bin/hub
+        - cwd: /opt
         - unless:
             - which hub
         - require:
