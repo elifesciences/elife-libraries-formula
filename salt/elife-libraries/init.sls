@@ -46,6 +46,13 @@ pattern-library-gulp:
         - require:
             - pkg: nodejs
 
+pattern-library-deb-dependencies:
+    pkg.installed:
+        - pkgs:
+            - make
+            - ruby-dev
+            - g++
+
 make:
     pkg.installed
 
