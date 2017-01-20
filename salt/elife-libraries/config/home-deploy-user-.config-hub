@@ -1,5 +1,0 @@
-github.com:
-- user: {{ pillar.elife_libraries.github.user }}
-  oauth_token: {{ pillar.elife_libraries.github.token }}
-  protocol: https
-
