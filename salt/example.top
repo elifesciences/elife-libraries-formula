@@ -4,6 +4,7 @@ base:
         - elife.php7
         - elife.nodejs6
         - elife.mercurial # elife-article-json
+        - elife.aws-cli
         - elife-libraries
         - elife.jenkins-scripts
         - elife.proofreader-php
