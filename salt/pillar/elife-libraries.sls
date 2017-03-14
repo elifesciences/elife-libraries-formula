@@ -6,3 +6,7 @@ elife_libraries:
     coveralls:
         tokens:
             elife_poa_xml_generation: null
+            elife_tools: null
+    mysql:
+        user: mysql-libraries
+        pass: mysql-libraries

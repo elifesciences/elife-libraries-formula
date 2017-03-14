@@ -240,3 +240,10 @@ mysql-user-grants:
         - require:
             - mysql-user
 
+ubr-test-app-config:
+    file.managed:
+        - name: /etc/ubr-test-app.cfg
+        - source: salt://elife-libraries/config/etc-ubr-test-app.cfg
+        - template: jinja
+        - user: {{ pillar.elife.deploy_user.username }}
+        - mode: 640
