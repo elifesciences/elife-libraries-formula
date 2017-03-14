@@ -8,5 +8,5 @@ elife_libraries:
             elife_poa_xml_generation: null
             elife_tools: null
     mysql:
-        user: mysql-libraries
-        pass: mysql-libraries
+        user: elife-libraries
+        pass: elife-libraries
