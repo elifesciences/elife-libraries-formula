@@ -160,10 +160,10 @@ jenkins-workspaces-cleanup-cron:
         - minute: 0
 
 {% for project, token in pillar.elife_libraries.coveralls.tokens.items() %}
-# TODO: how to remove the duplicate replace()?
-coveralls-{{ project|replace("_", "-") }}:
+{% set pname = project|replace("_", "-") %}
+coveralls-{{ pname }}:
     file.managed:
-        - name: /etc/coveralls/tokens/{{ project|replace("_", "-") }}
+        - name: /etc/coveralls/tokens/{{ pname }}
         - contents: {{ pillar.elife_libraries.coveralls.tokens.get(project) }}
         - makedirs: True
         - mode: 644
