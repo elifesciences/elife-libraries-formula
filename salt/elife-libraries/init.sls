@@ -70,15 +70,6 @@ patterns-php-composer-1.0:
         - unless:
             - which composer1.0
 
-patterns-php-puli-latest:
-   cmd.run:
-        - name: |
-            curl https://puli.io/installer | php
-            mv puli.phar puli
-        - cwd: /usr/local/bin/
-        - unless:
-            - which puli
-
 elife-poa-xml-generation-dependencies:
     pkg.installed:
         - pkgs:
