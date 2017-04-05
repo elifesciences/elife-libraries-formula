@@ -1,3 +1,16 @@
+deployuser-pgpass-file:
+    file.managed:
+        - user: {{ pillar.elife.deploy_user.username }}
+        - name: /home/{{ pillar.elife.deploy_user.username }}/.pgpass
+        - source: salt://elife/config/root-pgpass
+        - template: jinja
+        - mode: 0600
+        - defaults:
+            user: {{ pillar.elife.db_root.username }}
+            pass: {{ pillar.elife.db_root.password }}
+            host: localhost
+            port: 5432
+
 format-external-volume:
     cmd.run: 
         - name: mkfs -t ext4 /dev/xvdh
