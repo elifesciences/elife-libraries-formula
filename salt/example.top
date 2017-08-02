@@ -2,6 +2,7 @@ base:
     '*':
         - elife
         - elife.php7
+        - elife.composer
         - elife.nodejs6
         # LSH@2016-12-14, the EIF scraper depends on a hg dependency. the new scraper doesn't.
         # we may be able to remove
