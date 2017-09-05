@@ -7,6 +7,7 @@ elife_libraries:
         tokens:
             elife_poa_xml_generation: null
             elife_tools: null
+            elife_article: null
     mysql:
         user: elife-libraries
         pass: elife-libraries
