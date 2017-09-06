@@ -230,7 +230,6 @@ mysql-user:
     mysql_user.present:
         - name: elife-libraries
         - password: elife-libraries
-        - connection_pass: {{ pillar.elife.db_root.password }}
         - host: localhost
         - require:
             - mysql-ready
@@ -240,7 +239,6 @@ mysql-user-grants:
         - user: elife-libraries
         - database: '*.*'
         - grant: all privileges
-        - connection_pass: {{ pillar.elife.db_root.password }}
         - require:
             - mysql-user
 
