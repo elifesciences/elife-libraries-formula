@@ -251,3 +251,9 @@ ubr-test-app-config:
         - template: jinja
         - user: {{ pillar.elife.deploy_user.username }}
         - mode: 640
+
+tox:
+    pip.installed:
+        - name: tox == 2.9.1
+        - require:
+            - pkg: python-pip
