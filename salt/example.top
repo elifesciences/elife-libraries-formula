@@ -16,3 +16,4 @@ base:
         - elife.newrelic-infrastructure
         - elife.hub
         - elife.docker
+        - elife.docker-push
