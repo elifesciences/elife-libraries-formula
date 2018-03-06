@@ -72,17 +72,6 @@ pattern-library-compass:
             - pkg: ruby-dev
             - pkg: make
 
-patterns-php-composer-1.0:
-   cmd.run:
-        - name: |
-            cp composer composer1.0
-            composer1.0 self-update 1.0.3
-        - cwd: /usr/local/bin/
-        - require:
-            - cmd: install-composer
-        - unless:
-            - which composer1.0
-
 elife-poa-xml-generation-dependencies:
     pkg.installed:
         - pkgs:
