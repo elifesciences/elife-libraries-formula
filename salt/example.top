@@ -19,3 +19,4 @@ base:
         - elife.hub
         - elife.docker
         - elife.docker-push
+        - elife.pypi
