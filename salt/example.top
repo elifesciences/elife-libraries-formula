@@ -15,7 +15,6 @@ base:
         - elife.proofreader-php
         - elife.mysql57
         - elife.postgresql
-        - elife.newrelic-infrastructure
         - elife.hub
         - elife.docker
         - elife.docker-push
