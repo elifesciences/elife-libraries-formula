@@ -141,5 +141,3 @@ ubr-test-app-config:
 tox:
     pip.installed:
         - name: tox == 2.9.1
-        - require:
-            - pkg: python-pip
