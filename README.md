@@ -11,3 +11,9 @@ See the eLife [builder example project](https://github.com/elifesciences/builder
 for a reference on how to integrate with the `builder` project.
 
 [MIT licensed](LICENCE.txt)
+
+## Scope
+
+This project produces a Jenkins node with some basic catch-all eLife software installed (PHP, Python, MySQL, Postgres). Its main intent is to run builds of libraries; unlike projects, libraries don't have a dedicated infrastructure or multiple environments to run on.
+
+If a library is tested with the aid of Docker containers, rely on the [`containers`](https://github.com/elifesciences/containers-formula) nodes instead.
