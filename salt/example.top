@@ -8,10 +8,14 @@ base:
         # we may be able to remove
         - elife.mercurial # elife-article-json
         - elife.aws-cli
+        - elife.external-volume
         - elife.mysql57
         - elife.postgresql
+        - elife.jenkins-node
         - elife.jenkins-scripts
         - elife.proofreader-php
-        - elife.newrelic-infrastructure
         - elife.hub
+        - elife.docker
+        - elife.docker-push
+        - elife.pypi
         - elife-libraries
