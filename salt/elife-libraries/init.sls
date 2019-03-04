@@ -23,13 +23,6 @@ make:
 ruby-dev:
     pkg.installed
 
-pattern-library-compass:
-    gem.installed:
-        - name: compass
-        - require:
-            - pkg: ruby-dev
-            - pkg: make
-
 elife-poa-xml-generation-dependencies:
     pkg.installed:
         - pkgs:
