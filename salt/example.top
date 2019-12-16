@@ -9,7 +9,8 @@ base:
         - elife.mercurial # elife-article-json
         - elife.aws-cli
         - elife.external-volume
-        - elife.mysql57
+        - elife.mysql-client
+        - elife.mysql-server
         - elife.postgresql
         - elife.jenkins-node
         - elife.jenkins-scripts
