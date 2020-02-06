@@ -20,6 +20,7 @@ pattern-library-gulp:
 make:
     pkg.installed
 
+# TODO: what do we have that requires ruby?
 ruby-dev:
     pkg.installed
 
@@ -29,19 +30,19 @@ elife-poa-xml-generation-dependencies:
             - libxml2-dev
             - libxslt1-dev
 
-elife-article-json-hence-jats-scraper-dependencies:
+article-json bot-lax elife-tools dependencies:
     pkg.installed:
         - pkgs:
-            - libxml2-dev #  jats-scraper
-            - libxslt1-dev #  jats-scraper
+            - libxml2-dev
+            - libxslt1-dev
 
-metrics-dependencies:
+elife-metrics-dependencies:
     pkg.installed:
         - pkgs:
-            - libffi-dev # elife-ga-metrics requirement
-            - libpq-dev  #  elife-metrics
+            - libffi-dev
+            - libpq-dev
 
-elife-ga-metrics-auth:
+elife-metrics-auth:
     file.managed:
         - user: {{ pillar.elife.deploy_user.username }}
         - name: /etc/elife-ga-metrics/client-secrets.json
