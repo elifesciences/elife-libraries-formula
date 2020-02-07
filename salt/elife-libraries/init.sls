@@ -20,9 +20,12 @@ pattern-library-gulp:
 make:
     pkg.installed
 
-# TODO: what do we have that requires ruby?
+# pattern-library use to depend on `gem install` but it has since been moved to containers and eventually removed.
+# remove when 16.04 no longer supported
+{% if salt['grains.get']('osrelease') == '16.04' %}
 ruby-dev:
     pkg.installed
+{% endif %}
 
 elife-poa-xml-generation-dependencies:
     pkg.installed:
