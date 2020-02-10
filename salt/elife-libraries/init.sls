@@ -20,8 +20,12 @@ pattern-library-gulp:
 make:
     pkg.installed
 
+# pattern-library use to depend on `gem install` but it has since been moved to containers and eventually removed.
+# remove when 16.04 no longer supported
+{% if salt['grains.get']('osrelease') == '16.04' %}
 ruby-dev:
     pkg.installed
+{% endif %}
 
 elife-poa-xml-generation-dependencies:
     pkg.installed:
@@ -29,19 +33,19 @@ elife-poa-xml-generation-dependencies:
             - libxml2-dev
             - libxslt1-dev
 
-elife-article-json-hence-jats-scraper-dependencies:
+article-json bot-lax elife-tools dependencies:
     pkg.installed:
         - pkgs:
-            - libxml2-dev #  jats-scraper
-            - libxslt1-dev #  jats-scraper
+            - libxml2-dev
+            - libxslt1-dev
 
-metrics-dependencies:
+elife-metrics-dependencies:
     pkg.installed:
         - pkgs:
-            - libffi-dev # elife-ga-metrics requirement
-            - libpq-dev  #  elife-metrics
+            - libffi-dev
+            - libpq-dev
 
-elife-ga-metrics-auth:
+elife-metrics-auth:
     file.managed:
         - user: {{ pillar.elife.deploy_user.username }}
         - name: /etc/elife-ga-metrics/client-secrets.json
