@@ -1,1 +1,1 @@
-elifeFormula('elife-libraries', '', null, ['s1804'])
+elifeFormula('elife-libraries', '', null, ['snsalt'])
