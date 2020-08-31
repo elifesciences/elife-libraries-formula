@@ -1,1 +1,1 @@
-elifeFormula('elife-libraries', '', null, ['standalone-next-salt'])
+elifeFormula('elife-libraries', '', null, ['snsalt'])
