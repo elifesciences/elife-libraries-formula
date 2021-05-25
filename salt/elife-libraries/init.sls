@@ -17,33 +17,27 @@ pattern-library-gulp:
         - require:
             - pkg: nodejs
 
-make:
-    pkg.installed
-
-# pattern-library use to depend on `gem install` but it has since been moved to containers and eventually removed.
-# remove when 16.04 no longer supported
-{% if salt['grains.get']('osrelease') == '16.04' %}
-ruby-dev:
-    pkg.installed
-{% endif %}
-
-elife-poa-xml-generation-dependencies:
+project-dependencies:
     pkg.installed:
         - pkgs:
+            - make
+            # elife-poa-xml-generation
             - libxml2-dev
             - libxslt1-dev
-
-article-json bot-lax elife-tools dependencies:
-    pkg.installed:
-        - pkgs:
+            # article-json, bot-lax, elife-tools
             - libxml2-dev
             - libxslt1-dev
-
-elife-metrics-dependencies:
-    pkg.installed:
-        - pkgs:
+            # elife-metrics
             - libffi-dev
             - libpq-dev
+            # cleaner
+            - ghostscript
+            - libmagickwand-dev
+
+imagemagick-policy:
+    file.managed:
+        - name: /etc/ImageMagick-6/policy.xml
+        - source: salt://elife-libraries/config/etc-ImageMagick-6-policy.xml
 
 elife-metrics-auth:
     file.managed:
