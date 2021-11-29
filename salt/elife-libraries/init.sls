@@ -30,7 +30,8 @@ project-dependencies:
             # elife-metrics
             - libffi-dev
             - libpq-dev
-            # cleaner
+            # elife-cleaner
+            - poppler-utils
             - ghostscript
             - libmagickwand-dev
 
