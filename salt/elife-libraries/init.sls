@@ -47,15 +47,10 @@ elife-metrics-auth:
         - source: salt://elife-libraries/config/etc-elife-ga-metrics-client-secrets.json
         - makedirs: True
 
-{% for project, token in pillar.elife_libraries.coveralls.tokens.items() %}
-{% set pname = project|replace("_", "-") %}
-coveralls-{{ pname }}:
-    file.managed:
-        - name: /etc/coveralls/tokens/{{ pname }}
-        - contents: {{ pillar.elife_libraries.coveralls.tokens.get(project) }}
-        - makedirs: True
-        - mode: 644
-{% endfor %}
+# lsh@2021-12-14: remove once all elife-libraries instances are updated.
+coveralls-tokens-removal:
+    file.absent:
+        - name: /etc/coveralls
 
 # can grow up to 1-2 GB
 remove-old-pdepend-caches:
