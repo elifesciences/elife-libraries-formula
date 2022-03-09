@@ -1,12 +1,15 @@
+{% set osrelease = salt['grains.get']('osrelease') %}
 base:
     '*':
         - elife
+        - elife.java11
         - elife.php7
         - elife.composer
+        {% if osrelease == "18.04" %}
         - elife.nodejs6
-        # LSH@2016-12-14, the EIF scraper depends on a hg dependency. the new scraper doesn't.
-        # we may be able to remove
-        - elife.mercurial # elife-article-json
+        {% else %}
+        - elife.nodejs
+        {% endif %}
         - elife.aws-cli
         - elife.external-volume
         - elife.mysql-client
@@ -20,3 +23,6 @@ base:
         - elife.docker-push
         - elife.pypi
         - elife-libraries
+        #- elife.external-volume-srv
+        - elife.docker
+        - elife.spectrum
