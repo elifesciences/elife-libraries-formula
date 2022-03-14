@@ -25,4 +25,4 @@ base:
         - elife-libraries
         #- elife.external-volume-srv
         - elife.docker
-        - elife.spectrum
+        #- elife.spectrum

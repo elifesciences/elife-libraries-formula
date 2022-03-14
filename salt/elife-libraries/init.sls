@@ -1,4 +1,5 @@
 {% set osrelease = salt['grains.get']('osrelease') %}
+{% set root = pillar.elife.db_root %}
 
 deployuser-pgpass-file:
     file.managed:
@@ -8,8 +9,8 @@ deployuser-pgpass-file:
         - template: jinja
         - mode: 0600
         - defaults:
-            user: {{ pillar.elife.db_root.username }}
-            pass: {{ pillar.elife.db_root.password }}
+            user: {{ root.username }}
+            pass: {{ root.password }}
             host: localhost
             port: 5432
 
@@ -116,6 +117,8 @@ mysql-user:
     mysql_user.present:
         - name: elife-libraries
         - password: elife-libraries
+        - connection_user: {{ root.username }}
+        - connection_pass: {{ root.password }}
         - host: localhost
         - require:
             - mysql-ready
