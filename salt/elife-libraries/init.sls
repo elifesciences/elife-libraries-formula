@@ -117,9 +117,6 @@ mysql-user:
     mysql_user.present:
         - name: elife-libraries
         - password: elife-libraries
-        - connection_user: {{ root.username }}
-        - connection_pass: {{ root.password }}
-        - auth_plugin: mysql_native_password
         - host: localhost
         - require:
             - mysql-ready
