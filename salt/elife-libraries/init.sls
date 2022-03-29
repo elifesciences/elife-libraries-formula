@@ -1,3 +1,6 @@
+{% set osrelease = salt['grains.get']('osrelease') %}
+{% set root = pillar.elife.db_root %}
+
 deployuser-pgpass-file:
     file.managed:
         - user: {{ pillar.elife.deploy_user.username }}
@@ -6,16 +9,27 @@ deployuser-pgpass-file:
         - template: jinja
         - mode: 0600
         - defaults:
-            user: {{ pillar.elife.db_root.username }}
-            pass: {{ pillar.elife.db_root.password }}
+            user: {{ root.username }}
+            pass: {{ root.password }}
             host: localhost
             port: 5432
 
 pattern-library-gulp:
+    {% if osrelease == "18.04" %}
     npm.installed:
         - name: gulp-cli
         - require:
             - pkg: nodejs
+    {% else %}
+    # change/bug in npm, fixed in salt 3004 but not available at time in salt 3003.3
+    # issue: https://github.com/saltstack/salt/issues/60339
+    # fix: https://github.com/saltstack/salt/pull/60505
+    # changelog: https://github.com/saltstack/salt/blob/34f7d73d478489d29aa708295aeccd1d10b01b07/CHANGELOG.md#fixed
+    cmd.run:
+        - name: npm install gulp-cli
+        - require:
+            - pkg: nodejs
+    {% endif %}
 
 project-dependencies:
     pkg.installed:
