@@ -8,7 +8,7 @@ base:
         {% if osrelease == "18.04" %}
         - elife.nodejs6
         {% else %}
-        - elife.nodejs
+        - elife.nodejs16
         {% endif %}
         - elife.aws-cli
         - elife.external-volume
