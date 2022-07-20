@@ -1,1 +1,1 @@
-elifeFormula('elife-libraries', '', null, ['s2004'])
+elifeFormula('elife-libraries')
