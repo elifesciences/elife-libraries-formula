@@ -19,5 +19,4 @@ base:
         - elife.pypi
         - elife-libraries
         #- elife.external-volume-srv
-        - elife.docker
         #- elife.spectrum
