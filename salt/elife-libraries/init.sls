@@ -139,6 +139,12 @@ ubr-test-app-config:
 
 tox:
     cmd.run:
-        - name: pip install "tox==2.9.1"
+        # lsh@2022-10-19: downgrading importlib-metadata as it breaks salt-minion.
+        # see:
+        # - https://github.com/elifesciences/issues/issues/7782
+        # - https://github.com/python/importlib_metadata/issues/409
+        # - https://github.com/elifesciences/builder/commit/b3ef8ea6267f734ba7f5d40129295d9e66eb84e4
+        #- name: pip install "tox==2.9.1"
+        - name: pip install "tox==2.9.1" "importlib-metadata<5.0.0"
         - require:
             - python-3
