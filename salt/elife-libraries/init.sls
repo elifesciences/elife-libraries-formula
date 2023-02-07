@@ -61,11 +61,6 @@ elife-metrics-auth:
         - source: salt://elife-libraries/config/etc-elife-ga-metrics-client-secrets.json
         - makedirs: True
 
-# lsh@2021-12-14: remove once all elife-libraries instances are updated.
-coveralls-tokens-removal:
-    file.absent:
-        - name: /etc/coveralls
-
 # can grow up to 1-2 GB
 remove-old-pdepend-caches:
     cron.present:
