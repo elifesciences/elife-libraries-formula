@@ -51,7 +51,7 @@ builder-update:
             - builder-project
 
     cmd.run:
-        - name: ./update.sh --exclude virtualbox vagrant ssh-agent ssh-credentials vault
+        - name: ./update.sh --exclude virtualbox vagrant ssh-agent ssh-credentials vault terraform
         - cwd: /srv/builder
         - runas: {{ pillar.elife.deploy_user.username }}
         - require:
