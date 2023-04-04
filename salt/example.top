@@ -5,6 +5,7 @@ base:
         - elife.php7
         - elife.composer
         - elife.nodejs16
+        - elife.aws-credentials
         - elife.aws-cli
         - elife.external-volume
         - elife.mysql-client
@@ -20,3 +21,4 @@ base:
         - elife-libraries
         #- elife.external-volume-srv
         #- elife.spectrum
+        - elife-libraries.builder
