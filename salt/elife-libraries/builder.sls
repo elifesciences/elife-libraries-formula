@@ -29,9 +29,6 @@ builder-project:
         - force_reset: True
         - target: /srv/builder
         - require:
-            #- srv-directory-linked
-            #- builder-project-aws-credentials-elife
-            #- builder-project-aws-credentials-jenkins
             - builder-project-dependencies
 
     file.directory:
@@ -55,12 +52,11 @@ builder-update:
         - cwd: /srv/builder
         - runas: {{ pillar.elife.deploy_user.username }}
         - require:
-            #- builder-project-aws-credentials-elife
-            #- builder-project-aws-credentials-jenkins
+            - aws-credentials-deploy-user # builder-base.aws-credentials
             - file: builder-update
 
 builder-logrotate:
     file.managed:
         - name: /etc/logrotate.d/builder
-        - source: salt://elife-alfred/config/etc-logrotate.d-builder
+        - source: salt://elife-libraries/config/etc-logrotate.d-builder
 
