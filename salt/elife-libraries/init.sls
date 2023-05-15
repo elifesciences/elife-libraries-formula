@@ -1,3 +1,6 @@
+{% set osrelease = salt['grains.get']('osrelease') %}
+{% set root = pillar.elife.db_root %}
+
 deployuser-pgpass-file:
     file.managed:
         - user: {{ pillar.elife.deploy_user.username }}
@@ -6,44 +9,50 @@ deployuser-pgpass-file:
         - template: jinja
         - mode: 0600
         - defaults:
-            user: {{ pillar.elife.db_root.username }}
-            pass: {{ pillar.elife.db_root.password }}
+            user: {{ root.username }}
+            pass: {{ root.password }}
             host: localhost
             port: 5432
 
 pattern-library-gulp:
+    {% if osrelease == "18.04" %}
     npm.installed:
         - name: gulp-cli
         - require:
             - pkg: nodejs
+    {% else %}
+    # change/bug in npm, fixed in salt 3004 but not available at time in salt 3003.3
+    # issue: https://github.com/saltstack/salt/issues/60339
+    # fix: https://github.com/saltstack/salt/pull/60505
+    # changelog: https://github.com/saltstack/salt/blob/34f7d73d478489d29aa708295aeccd1d10b01b07/CHANGELOG.md#fixed
+    cmd.run:
+        - name: npm install gulp-cli
+        - require:
+            - pkg: nodejs
+    {% endif %}
 
-make:
-    pkg.installed
-
-# pattern-library use to depend on `gem install` but it has since been moved to containers and eventually removed.
-# remove when 16.04 no longer supported
-{% if salt['grains.get']('osrelease') == '16.04' %}
-ruby-dev:
-    pkg.installed
-{% endif %}
-
-elife-poa-xml-generation-dependencies:
+project-dependencies:
     pkg.installed:
         - pkgs:
+            - make
+            # elife-poa-xml-generation
             - libxml2-dev
             - libxslt1-dev
-
-article-json bot-lax elife-tools dependencies:
-    pkg.installed:
-        - pkgs:
+            # article-json, bot-lax, elife-tools
             - libxml2-dev
             - libxslt1-dev
-
-elife-metrics-dependencies:
-    pkg.installed:
-        - pkgs:
+            # elife-metrics
             - libffi-dev
             - libpq-dev
+            # elife-cleaner
+            - poppler-utils
+            - ghostscript
+            - libmagickwand-dev
+
+imagemagick-policy:
+    file.managed:
+        - name: /etc/ImageMagick-6/policy.xml
+        - source: salt://elife-libraries/config/etc-ImageMagick-6-policy.xml
 
 elife-metrics-auth:
     file.managed:
@@ -51,16 +60,6 @@ elife-metrics-auth:
         - name: /etc/elife-ga-metrics/client-secrets.json
         - source: salt://elife-libraries/config/etc-elife-ga-metrics-client-secrets.json
         - makedirs: True
-
-{% for project, token in pillar.elife_libraries.coveralls.tokens.items() %}
-{% set pname = project|replace("_", "-") %}
-coveralls-{{ pname }}:
-    file.managed:
-        - name: /etc/coveralls/tokens/{{ pname }}
-        - contents: {{ pillar.elife_libraries.coveralls.tokens.get(project) }}
-        - makedirs: True
-        - mode: 644
-{% endfor %}
 
 # can grow up to 1-2 GB
 remove-old-pdepend-caches:
@@ -98,17 +97,6 @@ cached-repositories-link:
         - require:
             - cached-repositories
 
-aws-credentials:
-    file.managed:
-        - name: /home/{{ pillar.elife.deploy_user.username }}/.aws/credentials
-        - source: salt://elife-libraries/config/home-deploy-user-.aws-credentials
-        - template: jinja
-        - makedirs: True
-        - user: {{ pillar.elife.deploy_user.username }}
-        - group: {{ pillar.elife.deploy_user.username }}
-        - require:
-            - deploy-user
-
 mysql-user:
     mysql_user.present:
         - name: elife-libraries
@@ -135,6 +123,12 @@ ubr-test-app-config:
 
 tox:
     cmd.run:
-        - name: pip install "tox==2.9.1"
+        # lsh@2022-10-19: downgrading importlib-metadata as it breaks salt-minion.
+        # see:
+        # - https://github.com/elifesciences/issues/issues/7782
+        # - https://github.com/python/importlib_metadata/issues/409
+        # - https://github.com/elifesciences/builder/commit/b3ef8ea6267f734ba7f5d40129295d9e66eb84e4
+        #- name: pip install "tox==2.9.1"
+        - name: pip install "tox==2.9.1" "importlib-metadata<5.0.0"
         - require:
             - python-3

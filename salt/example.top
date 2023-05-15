@@ -1,22 +1,24 @@
 base:
     '*':
         - elife
+        - elife.java11
         - elife.php7
         - elife.composer
-        - elife.nodejs6
-        # LSH@2016-12-14, the EIF scraper depends on a hg dependency. the new scraper doesn't.
-        # we may be able to remove
-        - elife.mercurial # elife-article-json
+        - elife.nodejs16
+        - elife.aws-credentials
         - elife.aws-cli
         - elife.external-volume
         - elife.mysql-client
         - elife.mysql-server
-        - elife.postgresql
+        - elife.postgresql-12
         - elife.jenkins-node
         - elife.jenkins-scripts
         - elife.proofreader-php
         - elife.hub
-        - elife.docker
+        - elife.docker-native
         - elife.docker-push
         - elife.pypi
         - elife-libraries
+        #- elife.external-volume-srv
+        #- elife.spectrum
+        - elife-libraries.builder
