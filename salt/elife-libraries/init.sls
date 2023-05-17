@@ -39,8 +39,8 @@ project-dependencies:
             - libxml2-dev
             - libxslt1-dev
             # article-json, bot-lax, elife-tools
-            - libxml2-dev
-            - libxslt1-dev
+            #- libxml2-dev
+            #- libxslt1-dev
             # elife-metrics
             - libffi-dev
             - libpq-dev
