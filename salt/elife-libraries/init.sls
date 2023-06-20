@@ -121,14 +121,23 @@ ubr-test-app-config:
         - user: {{ pillar.elife.deploy_user.username }}
         - mode: 640
 
+# lsh@2023-06-20: tox is no longer being used to run tests and is being removed everywhere.
+# it's also not a good idea to install python libraries outside of a venv.
+# - https://github.com/elifesciences/issues/issues/7071
+# - https://github.com/elifesciences/issues/issues/8198
+#tox:
+#    cmd.run:
+#        # lsh@2022-10-19: downgrading importlib-metadata as it breaks salt-minion.
+#        # see:
+#        # - https://github.com/elifesciences/issues/issues/7782
+#        # - https://github.com/python/importlib_metadata/issues/409
+#        # - https://github.com/elifesciences/builder/commit/b3ef8ea6267f734ba7f5d40129295d9e66eb84e4
+#        #- name: pip install "tox==2.9.1"
+#        - name: pip install "tox==2.9.1" "importlib-metadata<5.0.0"
+#        - require:
+#            - python-3
 tox:
     cmd.run:
-        # lsh@2022-10-19: downgrading importlib-metadata as it breaks salt-minion.
-        # see:
-        # - https://github.com/elifesciences/issues/issues/7782
-        # - https://github.com/python/importlib_metadata/issues/409
-        # - https://github.com/elifesciences/builder/commit/b3ef8ea6267f734ba7f5d40129295d9e66eb84e4
-        #- name: pip install "tox==2.9.1"
-        - name: pip install "tox==2.9.1" "importlib-metadata<5.0.0"
+        - name: pip uninstall tox -y
         - require:
-            - python-3
+            - python-3   
