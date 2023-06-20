@@ -138,6 +138,6 @@ ubr-test-app-config:
 #            - python-3
 tox:
     cmd.run:
-        - name: python -m pip uninstall tox -y
+        - name: pip uninstall tox -y
         - require:
             - python-3   
