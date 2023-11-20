@@ -48,6 +48,7 @@ project-dependencies:
             - poppler-utils
             - ghostscript
             - libmagickwand-dev
+            - ccache # nuitka compilation
 
 imagemagick-policy:
     file.managed:
