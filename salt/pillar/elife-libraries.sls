@@ -4,6 +4,9 @@ elife:
         access_key_id: null
         region: us-east-1
 
+    php:
+        version: '7.4'
+
 elife_libraries:
     mysql:
         user: elife-libraries
