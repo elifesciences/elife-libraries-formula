@@ -55,6 +55,7 @@ builder-update:
         - require:
             - aws-credentials-deploy-user # builder-base.aws-credentials
             - file: builder-update
+            - mise-pkg
 
 builder-logrotate:
     file.managed:
