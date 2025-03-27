@@ -48,7 +48,8 @@ builder-update:
             - builder-project
 
     cmd.run:
-        - name: ./update.sh --exclude virtualbox vagrant ssh-agent ssh-credentials vault terraform
+        # mise exec to create the venv with version of python specified in the .python-version file
+        - name: mise exec -- ./update.sh --exclude virtualbox vagrant ssh-agent ssh-credentials vault terraform
         - cwd: /srv/builder
         - runas: {{ pillar.elife.deploy_user.username }}
         - require:
@@ -59,4 +60,3 @@ builder-logrotate:
     file.managed:
         - name: /etc/logrotate.d/builder
         - source: salt://elife-libraries/config/etc-logrotate.d-builder
-
